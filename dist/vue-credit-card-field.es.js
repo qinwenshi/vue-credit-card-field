@@ -19956,47 +19956,6 @@ var CreditCardField = {
           _vm.$set(_vm.card, "cvc", $event.target.value);
         }
       }
-    }), _vm._v(" "), _c('input', {
-      directives: [{
-        name: "focus",
-        rawName: "v-focus",
-        value: _vm.validatePostalCode,
-        expression: "validatePostalCode"
-      }, {
-        name: "validate",
-        rawName: "v-validate:postalCode",
-        value: _vm.validatePostalCode,
-        expression: "validatePostalCode",
-        arg: "postalCode"
-      }, {
-        name: "model",
-        rawName: "v-model",
-        value: _vm.card.postalCode,
-        expression: "card.postalCode"
-      }],
-      staticClass: "credit-card-field-field credit-card-field-postal",
-      class: _vm.mergeClasses({
-        'is-empty': !_vm.card.postalCode,
-        'is-invalid': _vm.validated.postalCode === false
-      }),
-      attrs: {
-        "max": "5",
-        "type": "text",
-        "placeholder": "Zip",
-        "maxlength": "5"
-      },
-      domProps: {
-        "value": _vm.card.postalCode
-      },
-      on: {
-        "input": function input($event) {
-          if ($event.target.composing) {
-            return;
-          }
-
-          _vm.$set(_vm.card, "postalCode", $event.target.value);
-        }
-      }
     })]), _vm._v(" "), _c('div', {
       staticClass: "credit-card-field-placeholder-mask"
     }, [_vm._v("Number")]), _vm._v(" "), _c('div', {
@@ -20068,9 +20027,6 @@ var CreditCardField = {
     },
     'card.cvc': function cardCvc(newVal, oldVal) {
       this.validated.cvc = null;
-    },
-    'card.postalCode': function cardPostalCode(newVal, oldVal) {
-      this.validated.postalCode = null;
     }
   },
   directives: {
@@ -20186,8 +20142,7 @@ var CreditCardField = {
       return {
         number: this.$attrs.number || '',
         expiration: this.$attrs.expiration || '',
-        cvc: this.$attrs.cvc || '',
-        postalCode: this.$attrs.postalCode || ''
+        cvc: this.$attrs.cvc || ''
       };
     },
     getCardField: function getCardField() {
@@ -20252,9 +20207,6 @@ var CreditCardField = {
     validateExpiration: function validateExpiration(value) {
       return lib$1.fns.validateCardExpiry(value);
     },
-    validatePostalCode: function validatePostalCode(value) {
-      return value.match(/^\d{5}(?:[-\s]\d{4})?$/) !== null;
-    },
     isPrintableKeyCode: function isPrintableKeyCode(event) {
       var keycode = event.keyCode;
       return keycode > 47 && keycode < 58 || // number keys
@@ -20284,7 +20236,7 @@ var CreditCardField = {
       return false;
     },
     isComplete: function isComplete() {
-      return this.validated.number && this.validated.expiration && this.validated.cvc && this.validated.postalCode ? true : false;
+      return this.validated.number && this.validated.expiration && this.validated.cvc ? true : false;
     },
     onResize: function onResize(event) {
       this.width = this.$el.offsetWidth;
@@ -20301,7 +20253,6 @@ var CreditCardField = {
   },
   mounted: function mounted() {
     lib$1.formatCardCVC(this.$el.querySelector('.credit-card-field-cvc'));
-    lib$1.restrictNumeric(this.$el.querySelector('.credit-card-field-postal'));
     lib$1.formatCardNumber(this.$el.querySelector('.credit-card-field-number'));
     lib$1.formatCardExpiry(this.$el.querySelector('.credit-card-field-expiration'));
     this.$emit('input', this.card);
@@ -20321,15 +20272,13 @@ var CreditCardField = {
       validated: {
         number: null,
         expiration: null,
-        cvc: null,
-        postalCode: null
+        cvc: null
       },
       card: {
         brand: null,
         number: null,
         expiration: null,
-        cvc: null,
-        postalCode: null
+        cvc: null
       }
     };
   }

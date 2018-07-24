@@ -27,7 +27,6 @@
                     <div class="credit-card-field-security-fields">
                         <input v-focus v-validate:expiration="validateExpiration" v-model="card.expiration" type="text" placeholder="MM / YY" maxlength="7" class="credit-card-field-field credit-card-field-expiration" :class="mergeClasses({'is-empty': !card.expiration, 'is-invalid': validated.expiration === false})">
                         <input v-focus="validateCvc" v-validate:cvc="validateCvc" v-model="card.cvc" type="text" placeholder="CVC" maxlength="4" autocomplete="off" class="credit-card-field-field credit-card-field-cvc" :class="mergeClasses({'is-empty': !card.cvc, 'is-invalid': validated.cvc === false})">
-                        <input v-focus="validatePostalCode" v-validate:postalCode="validatePostalCode" v-model="card.postalCode" max="5" type="text" placeholder="Zip" maxlength="5" class="credit-card-field-field credit-card-field-postal" :class="mergeClasses({'is-empty': !card.postalCode, 'is-invalid': validated.postalCode === false})">
                     </div>
 
                     <div class="credit-card-field-placeholder-mask">Number</div>
@@ -132,9 +131,6 @@ export default {
         },
         'card.cvc': function(newVal, oldVal) {
             this.validated.cvc = null;
-        },
-        'card.postalCode': function(newVal, oldVal) {
-            this.validated.postalCode = null;
         }
     },
 
@@ -265,8 +261,7 @@ export default {
             return {
                 number: this.$attrs.number || '',
                 expiration: this.$attrs.expiration || '',
-                cvc: this.$attrs.cvc || '',
-                postalCode: this.$attrs.postalCode || ''
+                cvc: this.$attrs.cvc || ''
             };
         },
 
@@ -345,11 +340,6 @@ export default {
         validateExpiration(value) {
             return Payment.fns.validateCardExpiry(value);
         },
-
-        validatePostalCode(value) {
-            return value.match(/^\d{5}(?:[-\s]\d{4})?$/) !== null;
-        },
-
         isPrintableKeyCode(event) {
             const keycode = event.keyCode;
 
@@ -387,8 +377,7 @@ export default {
             return (
                 this.validated.number &&
                 this.validated.expiration &&
-                this.validated.cvc &&
-                this.validated.postalCode
+                this.validated.cvc
             ) ? true : false;
         },
 
@@ -411,7 +400,6 @@ export default {
 
     mounted() {
         Payment.formatCardCVC(this.$el.querySelector('.credit-card-field-cvc'));
-        Payment.restrictNumeric(this.$el.querySelector('.credit-card-field-postal'));
         Payment.formatCardNumber(this.$el.querySelector('.credit-card-field-number'));
         Payment.formatCardExpiry(this.$el.querySelector('.credit-card-field-expiration'));
 
@@ -435,15 +423,13 @@ export default {
             validated: {
                 number: null,
                 expiration: null,
-                cvc: null,
-                postalCode: null
+                cvc: null
             },
             card: {
                 brand: null,
                 number: null,
                 expiration: null,
-                cvc: null,
-                postalCode: null
+                cvc: null
             }
         };
     }
@@ -585,7 +571,7 @@ export default {
         .credit-card-field-security-fields {
             position: absolute;
             left: 100%;
-            width: 11em;
+            width: 8em;
             display: inline-block;
             transition: transform .333s ease-in-out;
         }
@@ -620,11 +606,6 @@ export default {
         .credit-card-field-cvc {
             width: 2.75em;
         }
-
-        .credit-card-field-postal {
-            width: 3.5em;
-        }
-
 
         .credit-card-field-icon-wrapper {
             position: absolute;
@@ -690,10 +671,9 @@ export default {
         &.show-security-fields .credit-card-field-security-fields,
         &.is-focused-expiration .credit-card-field-security-fields,
         &.is-focused-cvc .credit-card-field-security-fields,
-        &.is-focused-postal .credit-card-field-security-fields,
+
         &.last-focused-expiration .credit-card-field-security-fields,
-        &.last-focused-cvc .credit-card-field-security-fields,
-        &.last-focused-postal .credit-card-field-security-fields {
+        &.last-focused-cvc .credit-card-field-security-fields {
             transform: translateX(-100%);
         }
 
@@ -706,8 +686,7 @@ export default {
 
         &.is-focused:not(.is-focused-number),
         &:not(.is-focused).last-focused-expiration,
-        &:not(.is-focused).last-focused-cvc,
-        &:not(.is-focused).last-focused-postal, {
+        &:not(.is-focused).last-focused-cvc {
             .credit-card-field-number.is-empty {
                 opacity: 0;
             }

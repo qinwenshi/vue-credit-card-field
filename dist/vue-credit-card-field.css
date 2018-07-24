@@ -85,7 +85,7 @@
     .credit-card-field-wrapper .form-control.credit-card-field .credit-card-field-security-fields {
       position: absolute;
       left: 100%;
-      width: 11em;
+      width: 8em;
       display: inline-block;
       transition: transform .333s ease-in-out; }
     .credit-card-field-wrapper .form-control.credit-card-field .credit-card-field-placeholder-mask,
@@ -109,8 +109,6 @@
       width: 4.75em; }
     .credit-card-field-wrapper .form-control.credit-card-field .credit-card-field-cvc {
       width: 2.75em; }
-    .credit-card-field-wrapper .form-control.credit-card-field .credit-card-field-postal {
-      width: 3.5em; }
     .credit-card-field-wrapper .form-control.credit-card-field .credit-card-field-icon-wrapper {
       position: absolute;
       top: 0;
@@ -159,18 +157,16 @@
     .credit-card-field-wrapper .form-control.credit-card-field.show-security-fields .credit-card-field-security-fields,
     .credit-card-field-wrapper .form-control.credit-card-field.is-focused-expiration .credit-card-field-security-fields,
     .credit-card-field-wrapper .form-control.credit-card-field.is-focused-cvc .credit-card-field-security-fields,
-    .credit-card-field-wrapper .form-control.credit-card-field.is-focused-postal .credit-card-field-security-fields,
     .credit-card-field-wrapper .form-control.credit-card-field.last-focused-expiration .credit-card-field-security-fields,
-    .credit-card-field-wrapper .form-control.credit-card-field.last-focused-cvc .credit-card-field-security-fields,
-    .credit-card-field-wrapper .form-control.credit-card-field.last-focused-postal .credit-card-field-security-fields {
+    .credit-card-field-wrapper .form-control.credit-card-field.last-focused-cvc .credit-card-field-security-fields {
       transform: translateX(-100%); }
     .credit-card-field-wrapper .form-control.credit-card-field.is-focused {
       outline: none;
       border-color: #80bdff;
       box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); }
-    .credit-card-field-wrapper .form-control.credit-card-field.is-focused:not(.is-focused-number) .credit-card-field-number.is-empty, .credit-card-field-wrapper .form-control.credit-card-field:not(.is-focused).last-focused-expiration .credit-card-field-number.is-empty, .credit-card-field-wrapper .form-control.credit-card-field:not(.is-focused).last-focused-cvc .credit-card-field-number.is-empty, .credit-card-field-wrapper .form-control.credit-card-field:not(.is-focused).last-focused-postal .credit-card-field-number.is-empty {
+    .credit-card-field-wrapper .form-control.credit-card-field.is-focused:not(.is-focused-number) .credit-card-field-number.is-empty, .credit-card-field-wrapper .form-control.credit-card-field:not(.is-focused).last-focused-expiration .credit-card-field-number.is-empty, .credit-card-field-wrapper .form-control.credit-card-field:not(.is-focused).last-focused-cvc .credit-card-field-number.is-empty {
       opacity: 0; }
-    .credit-card-field-wrapper .form-control.credit-card-field.is-focused:not(.is-focused-number) .credit-card-field-number.is-empty ~ .credit-card-field-placeholder-mask, .credit-card-field-wrapper .form-control.credit-card-field:not(.is-focused).last-focused-expiration .credit-card-field-number.is-empty ~ .credit-card-field-placeholder-mask, .credit-card-field-wrapper .form-control.credit-card-field:not(.is-focused).last-focused-cvc .credit-card-field-number.is-empty ~ .credit-card-field-placeholder-mask, .credit-card-field-wrapper .form-control.credit-card-field:not(.is-focused).last-focused-postal .credit-card-field-number.is-empty ~ .credit-card-field-placeholder-mask {
+    .credit-card-field-wrapper .form-control.credit-card-field.is-focused:not(.is-focused-number) .credit-card-field-number.is-empty ~ .credit-card-field-placeholder-mask, .credit-card-field-wrapper .form-control.credit-card-field:not(.is-focused).last-focused-expiration .credit-card-field-number.is-empty ~ .credit-card-field-placeholder-mask, .credit-card-field-wrapper .form-control.credit-card-field:not(.is-focused).last-focused-cvc .credit-card-field-number.is-empty ~ .credit-card-field-placeholder-mask {
       opacity: 1; }
     .credit-card-field-wrapper .form-control.credit-card-field.is-focused-cvc .credit-card-field-icon-card {
       perspective: 1000px;
